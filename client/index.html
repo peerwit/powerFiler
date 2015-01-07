@@ -9,16 +9,26 @@
     <script src="static/bower_components/backbone/backbone.js"></script>
 
     <script>console.log("Hello World.")</script>
+    <script>$(document).ready(function () {
+            $("#uploadbutton").click(function () {
+                var filename = $("#file").val();
 
-<!--     <script src="compiled/src/models/Card.js"></script>
-    <script src="compiled/src/collections/Hand.js"></script>
-    <script src="compiled/src/collections/Deck.js"></script>
-    <script src="compiled/src/models/App.js"></script>
-
-    <script src="compiled/src/views/CardView.js"></script>
-    <script src="compiled/src/views/HandView.js"></script>
-    <script src="compiled/src/views/AppView.js"></script>
-
-    <script src="compiled/src/main.js"></script>
- -->  </body>
+                $.ajax({
+                    type: "POST",
+                    url: "/uploads/somefile",
+                    enctype: 'multipart/form-data',
+                    data: {
+                        file: filename
+                    },
+                    success: function () {
+                        alert("Data Uploaded: ");
+                    }
+                });
+            });
+        });
+    </script>
+    <span>File</span>
+      <input type="file" id="file" name="file" size="10"/>
+      <input id="uploadbutton" type="button" value="Upload"/>
+  </body>
 </html>
